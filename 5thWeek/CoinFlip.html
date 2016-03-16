@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coin Flipper</title>
+</head>
+<body>
+  <!-- the html is done for you -->
+  <h1>Flip A Coin!</h1>
+  <h2>Guess Heads or Tails:</h2>
+
+  <button id="heads">Heads</button>
+  <button id="tails">Tails</button>
+  <br>
+  <div>You guessed:<span id="guess"></span></div>
+  <br>
+  <div id="coin-image"></div>
+  <div id="win-lose"></div>
+  <div id="win-loss-tracker">
+    <div><h3>Wins: <span id="wins"></span></h3></div>
+    <div><h3>Losses: <span id="losses"></span></h3></div>
+  </div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+  // these variables are done for you
+  var headsCount = 0;
+  var tailsCount = 0;
+  var wins = 0;
+  var losses = 0;
+  //this on click is completely done for you
+  $('#heads').on('click', function() {
+    headsCount++;
+    $('#headsChosen').html(headsCount); 
+    $('#guess').html('<b>Heads</b>');
+    flipThatCoin(0);
+  });
+  $('#tails').on('click', function() {
+    tailsCount++;
+    $('#tailsChosen').html(tailsCount); 
+    $('#guess').html('<b>Tails</b>');
+    flipThatCoin(1);
+  });
+  function flipThatCoin(result) {
+    var randomSide=Math.floor(Math.random()*2);
+    console.log(randomSide);
+    //STEP TWO: 
+    if(randomSide==0){
+      $("#coin-image").html("<img src='http://random-ize.com/coin-flip/us-quarter/us-quarter-front.jpg'>");}
+    else{
+      $("#coin-image").html("<img src='http://random-ize.com/coin-flip/us-quarter/us-quarter-back.jpg'>");}
+    if(result==randomSide){
+      wins=wins+1;
+      $("#wins").html(wins);
+      $("#win-lose").html("<h2>WINNER!</h2>");}
+    else{
+      losses=losses+1;
+      $("#losses").html(losses);
+      $("#win-lose").html("<h2>LOSER!</h2>");}
+  }
+</script>
+</body>
+</html>

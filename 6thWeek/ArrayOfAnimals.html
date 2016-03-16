@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array of Animals</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="Buttons"></div>
+<div class="Place"></div>
+
+<script type="text/javascript">
+var animalArray=["Buffalo","Chimp","Dog","Lion"];
+
+for(var i=0;i<animalArray.length;i++){
+	$(".Buttons").append("<button class='Button"+i+"'>"+animalArray[i]+"</button>");
+	$(".Button"+i).data("test",animalArray[i]);
+	$(".Button"+i).on("click",function(){
+		alert($(this).data("test"));})}
+</script>
+
+</body>
+</html>

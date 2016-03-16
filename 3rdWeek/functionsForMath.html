@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Math Functions</title>
+</head>
+<body>
+
+<script type="text/javascript">
+//TAKES IN THREE ARGUMENTS AND ADDS THEM TOGETHER
+function addVariables(x,y,z){
+	return x+y+z;}
+
+//TAKES IN THREE ARGUMENTS AND MULTIPLIES THEM
+function multiplyVariables(x,y,z){
+	return x*y*z;}
+
+//TAKES IN ARGUMENTS TO CHECK IF THEY ARE STRINGS OR NOT
+function areTheyStrings(x,y,z){
+	var container=[x,y,z];
+	var string=0;
+	for(var i=0;i<container.length;i++){
+		if(typeof container[i]=="string"){
+			var string=string+1;}}
+	if(string==container.length){
+		alert("THEY ARE ALL STRINGS!");}}
+
+//RUNNING THE CODE
+alert(addVariables(1,2,3));
+alert(multiplyVariables(1,2,3));
+areTheyStrings("spoon","spork","fork");
+</script>
+
+</body>
+</html>

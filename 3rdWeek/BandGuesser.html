@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+function awesomeScript(){
+	var x=false;
+	var bandsILike=["The Who", "Led Zepplin", "Parov Stelar", "Delta Rae", "The Eagles"];
+
+while(x==false){
+	var guess=prompt("What band do I like?");
+	if (bandsILike.indexOf(guess) == -1) {
+  		alert('WRONG!');
+  		x=false;
+	}else{
+  		alert('CORRECT!');
+  		x=true;}}}
+
+ window.onLoad=awesomeScript();
+
+</script>
+
+
+</body>
+</html>

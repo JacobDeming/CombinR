@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inception</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <style>
+       body {
+            background-color: black;
+        }
+
+        .mission {
+            height: 100px;
+            background-color: white;
+            border-radius: 25px;
+            font-size: 30px;
+            margin: 5px;
+            padding: 10px;
+        }
+
+        #yusuf {
+            width: 400px;
+            background-color: mediumseagreen;
+        }
+
+        #arthur {
+            width: 350px;
+            background-color: coral;
+        }
+
+        #eames {
+            width: 300px;
+            background-color: deepskyblue;
+        }
+
+        #cubb {
+            width: 250px;
+            background-color: darkgray;
+        }
+
+        #limbo {
+            width: 200px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mission" id="yusuf">Yusuf's Dream</div>
+    <div class="mission" id="arthur">Arthur's Dream</div>
+    <div class="mission" id="eames">Eames's Dream</div>
+    <div class="mission" id="cubb">Cubb's Dream</div>
+    <div class="mission" id="limbo">Exit Limbo</div>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        var inception = {
+            missionLog: {
+                yusufMission: "Not complete.",
+                arthurMission: "Not complete.",
+                eamesMission: "Not complete.",
+                cubbMission: "Not complete.",
+            }
+        };
+
+	$("#yusuf").click(function(){
+		inception.missionLog.yusufMission="complete";
+		alert(inception.missionLog.yusufMission);})
+
+	$("#arthur").click(function(){
+		inception.missionLog.arthurMission="complete";
+		alert(inception.missionLog.yusufMission);})
+
+	$("#eames").click(function(){
+		inception.missionLog.eamesMission="complete";
+		alert(inception.missionLog.eamesMission);})
+
+	$("#cubb").click(function(){
+		inception.missionLog.cubbMission="complete";
+		alert(inception.missionLog.cubbMission);})
+
+	$("#limbo").click(function(){
+		if(inception.missionLog.yusufMission=="complete" && inception.missionLog.arthurMission=="complete" && inception.missionLog.eamesMission=="complete" && inception.missionLog.cubbMission=="complete"){
+			alert("YOU HAVE EXITED THE DREAM! MISSION COMPLETE!")}})
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id=""><h1>TakeNames!</h1></div>
+<div class="greekMythNames">Odysseus</div>
+<div class="greekMythNames">Penelope</div>
+<div class="greekMythNames">Medea</div>
+<div class="greekMythNames">Callisto</div>
+</br>
+<div id="wrestler">Hulk Hogan</div>
+</br>
+<div data-name='007'>James Bond</div>
+</br>
+<div id="joker" data-name='Jack Napier'></div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	function pickthings(){
+		var gmn=$(".greekMythNames");
+		alert(gmn[1].innerText);
+
+		var wwe=$("#wrestler");
+		alert(wwe[0].innerText);
+
+		var james=$("[data-name='007']");
+		alert(james[0].innerText);
+
+		var villain=$("#joker");
+		alert(villain.attr('data-name'));
+	}
+	pickthings();
+})
+
+
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

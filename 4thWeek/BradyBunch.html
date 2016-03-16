@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brady Bunch</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<!-- CSS Styling for the page -->
+    <style>
+/*Sets the background color to powder blue*/
+    body {
+        background-color: powderblue
+    }
+/*Sets the height, width, and positioning of the character's images*/
+    .character {
+        width: 200px;
+        height: 160px;
+        float: left;
+    }
+/*Style for the character's names at the bottom*/
+    .charName {
+        width: 110px;
+        height: 40px;
+        border-style: solid;
+        padding: 3px;
+        color: dimgray;
+        float: left;
+        margin: 1px;
+        font-size: 20px;
+    }
+/*Clears the left side of an element*/
+    .clear {
+        clear: left;
+    }
+    </style>
+</head>
+
+<body>
+<!-- Slots that will contain the images -->
+    <div id="slot-top-left"></div>
+    <div id="slot-top-mid"></div>
+    <div id="slot-top-right"></div>
+    <div class="clear"></div>
+    <div id="slot-mid-left"></div>
+    <div id="slot-mid-mid"></div>
+    <div id="slot-mid-right"></div>
+    <div class="clear"></div>
+    <div id="slot-bot-left"></div>
+    <div id="slot-bot-mid"></div>
+    <div id="slot-bot-right"></div>
+    <div class="clear"></div>
+<!-- Names of the characters that are placed on the page -->
+    <p class="charName" id="sister_big">sister big</p>
+    <p class="charName" id="mom">mom</p>
+    <p class="charName" id="brother_big">brother big</p>
+    <p class="charName" id="sister_small">sister small</p>
+    <p class="charName" id="logo">logo</p>
+    <p class="charName" id="brother_mid">brother mid</p>
+    <p class="charName" id="sister_mid">sister mid</p>
+    <p class="charName" id="dad">dad</p>
+    <p class="charName" id="brother_small">brother small</hp>
+
+    <script type="text/javascript">
+ // Initialize variable count to 0 so that it counts correctly
+    var count = 0;
+
+// Function runs when the page loads
+    $(document).ready(function() {
+        //Object containing the names and images of the Brady Bunch
+        var characters = {
+            'brother_big': {
+                imageUrl: "images/brother_big.png",
+                name: "Greg"
+            },
+            'brother_mid': {
+                imageUrl: "images/brother_mid.png"
+            },
+            'brother_small': {
+                imageUrl: "images/brother_small.png"
+            },
+            'dad': {
+                imageUrl: "images/dad.png"
+            },
+            'logo': {
+                imageUrl: "images/logo.png"
+            },
+            'mom': {
+                imageUrl: "images/mom.png"
+            },
+            'sister_big': {
+                imageUrl: "images/sister_big.png"
+            },
+            'sister_mid': {
+                imageUrl: "images/sister_mid.png"
+            },
+            'sister_small': {
+                imageUrl: "images/sister_small.png"
+            },
+        };
+
+// Function that places the image associated to a specific character in the next available location
+        var render = function(character, renderArea) {
+            //console.log("rendering img");
+            var charDiv = $("<div data-name='" + String(character) + "'>");
+            var charImage = $("<img alt='image' class='character'>").attr("src", character.imageUrl);
+            charDiv.append(charImage);
+            $("#"+renderArea).append(charDiv);
+        };
+
+// Initialize the array containing the placement of images within the divs listed in the HTML section. Must be the same as those listed.
+        var positions = ["slot-top-left", "slot-top-mid", "slot-top-right", "slot-mid-left", "slot-mid-mid", "slot-mid-right", "slot-bot-left", "slot-bot-mid", "slot-bot-right"];
+// Initialize the arry containing all the different characters listed in the "characters" object. Must be the same as those listed.
+        var chars = ["mom", "dad", "brother_big", "brother_mid", "brother_small", "sister_big", "sister_mid", "sister_small", "logo"];
+
+//For loop that creates onclick events for each character in the Brady Bunch object and array that will place them within the HTML divs.
+        for (var i = 0; i < chars.length; i++) {
+            $('#' + chars[i]).on('click', function() {
+                var name = ($(this)[0].id);
+                render(characters[name], positions[count]);
+                count++;
+            });
+        };
+
+    });
+    </script>
+</body>
+
+</html>

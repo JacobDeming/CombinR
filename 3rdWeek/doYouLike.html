@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Do You Like?</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+	function doYouLike(){
+		var myBirthYear=1991;
+
+		var youLike=confirm("Do you like pie?");
+		if(youLike==true){
+			alert("I made you pie.");}
+		else{
+			alert("Too bad. I do not care.");}
+
+	var yourBirthYear="";
+	while(yourBirthYear==""){
+		yourBirthYear=prompt("What year were you born?");
+		if(yourBirthYear<myBirthYear){
+			alert("You are older than me.");}
+		else if(yourBirthYear>myBirthYear){
+			alert("You are younger than me.");}
+		else if(yourBirthYear==myBirthYear){
+			alert("We are the same age!");}
+		else{
+			alert("Enter a year!");
+			yourBirthYear="";}}}
+
+	window.onLoad=doYouLike();
+</script>
+
+</body>
+</html>

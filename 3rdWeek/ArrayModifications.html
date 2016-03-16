@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Modifications</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var drinks=["Soda", "Milk", "Juice"];
+		var i=0;
+
+		while(i<drinks.length){
+			drinks[i]=drinks[i].toLowerCase();
+			console.log(drinks[i]);
+			i++;}
+
+		for(i=0; i<drinks.length;i++){
+			drinks[i]=drinks[i].toUpperCase();
+			console.log(drinks[i]);}
+
+		i=0;
+		do{
+			drinks[i]=drinks[i].toLowerCase();
+			console.log(drinks[i]);
+			i++;}
+		while(i<drinks.length);
+
+	</script>
+</body>
+</html>

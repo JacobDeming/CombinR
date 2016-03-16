@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Movies!</title>
+	<style type="text/css">
+		button, div, form, input {
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Movies!</h1>
+  <div id="moviesView"></div>
+  <p>Add a Movie Bro: <input type="text" name="movie"><button id="SUBMIT">SUBMIT</button></p>
+
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type="text/javascript">
+	var movies = ['The Matrix', 'The Notebook', 'Mr. Nobody', 'The Lion King'];
+	var count=0;
+
+	for (var i = 0; i < movies.length; i++){
+		count++;
+		$("#moviesView").append("<button class='Button"+i+"'>"+movies[i]+"</button>");
+		$(".Button"+i).data("test",movies[i]);
+		$(".Button"+i).on("click",function(){
+			alert($(this).data("test"));})}
+
+	$("#SUBMIT").on("click",function(){
+		makeButton();})
+
+var makeButton=function(){
+	var text=$("input:text").val();
+	count++;
+	$("input:text").val('');
+	$("#moviesView").append("<button class='Button"+count+"'>"+text+"</button>");
+	$(".Button"+count).data("movie",text);
+	$(".Button"+count).on("click",function(){
+		alert($(this).data("movie"));
+	})
+}
+
+
+</script>
+
+
+</body>
+</html>

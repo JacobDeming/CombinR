@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Street Fighter</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <style>
+    body {
+        background: url(images/streetfighter_bg.png) no-repeat;
+        width: 500px;
+        height: 360px;
+    }
+    #button-area-top {
+      margin-top: 218px;
+      margin-left: 140px;
+    }
+    #button-area-bot {
+      margin-left: 140px;
+    }
+    .buttons {
+        width: 50px;
+        height: 65px;
+        float: left;
+    }
+    .char {
+      width: 90px;
+      height: 125px;
+    }
+    .clear {
+        clear: left;
+    }
+    .left-side{
+      position: absolute;
+      top: 200px;
+    }
+    .right-side{
+      position: absolute;
+      top: 205px;
+      left: 380px;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="button-area-top"></div>
+    <div class="clear"></div>
+
+    <div id="button-area-bot"></div>
+    <div class="clear"></div>
+
+    <p class="left-side"></p>
+    <p class="right-side"></p>
+
+    <script type="text/javascript">
+
+    var count = 0;
+
+    $(document).ready(function() {
+        //fight fight fight
+        var characters = {
+            'blanka': {
+                name: "Blanka",
+                biggerImg: "images/blanka_big",
+                buttonImg: "images/blanka_button",
+            },
+            'chunli': {
+                name: "Chun Li",
+                biggerImg: "images/chunli_big",
+                buttonImg: "images/chunli_button",
+            },
+            'dhalsim': {
+                name: "Dhalsim",
+                biggerImg: "images/dhalsim_big",
+                buttonImg: "images/dhalsim_button",
+            },
+            'ehonda': {
+                name: "E Honda",
+                biggerImg: "images/ehonda_big",
+                buttonImg: "images/ehonda_button",
+            },
+            'guile': {
+                name: "Guile",
+                biggerImg: "images/guile_big",
+                buttonImg: "images/guile_button",
+            },
+            'ken': {
+                name: "Ken",
+                biggerImg: "images/ken_big",
+                buttonImg: "images/ken_button",
+            },
+            'ryu': {
+                name: "Ryu",
+                biggerImg: "images/ryu_big",
+                buttonImg: "images/ryu_button",
+            },
+            'zangief': {
+                name: "Zangief",
+                biggerImg: "images/zangief_big",
+                buttonImg: "images/zangief_button",
+            }
+        };
+
+        var render = function(character, renderArea) {
+            if () {
+              var charDiv = $(;
+              var charImage = $(//);
+              charDiv.append(//);
+              $(//).append(//);
+            }else{
+              var charDiv = $(//);
+              var charImage = $(//);
+              charDiv.append(//);
+              $(//).append(//);
+            };
+        };
+
+        var characterNames = ["blanka"];
+        var sides = ["button-area-top"];
+
+        for (//) {
+          //
+          render(//);
+          $(//).on('click', function() {
+
+              if (//) {
+                //
+              };
+          });
+        };
+        for (//) {
+          //
+          render(//);
+          $(//).on('click', function() {
+
+              if (//) {
+                //
+              };
+          });
+        };
+    });
+    </script>
+</body>
+
+</html>

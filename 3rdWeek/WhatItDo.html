@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blank JS File</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+      //Declares the initial function
+      function myMainFunction(){
+        var milkshakes;
+        var flavor;
+
+        milkshakes=confirm("Do you like milkshakes?");
+
+        if(milkshakes==true){
+          flavor=prompt("What kind of milkshakes do you like?");
+          alert("You like "+flavor+" milkshakes.");}
+        else{
+          alert("WHY DO YOU HATE MILKSHAKES!?");
+        }
+      }
+
+      //When window loads then the function will load
+      window.onLoad=myMainFunction();
+
+  </script>
+
+</body>
+</html>

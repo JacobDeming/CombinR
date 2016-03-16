@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FizzBuzz</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+</head>
+<body>
+<h1 class="TIME">0</h1>
+
+<script type="text/javascript">
+var counter;
+var timer={
+	time:0,
+	start:function(){
+		if(counter){clearInterval(counter);}
+    	counter=setInterval(timer.count,1000);
+	},
+	stop: function(){
+    clearInterval(counter);
+  	},
+	count:function(){
+		timer.time++;
+		if((timer.time%3)==0 && (timer.time%5)!=0){
+			$(".TIME").html("FIZZ");}
+		if((timer.time%5)==0 && (timer.time%3)!=0){
+			$(".TIME").html("BUZZ");}
+		if((timer.time%5)==0 && (timer.time%3)==0){
+			$(".TIME").html("FIZZBUZZ");}
+		if((timer.time%5)!=0 && (timer.time%3)!=0){
+			$(".TIME").html(timer.time);}
+		if(timer.time>=101){
+			timer.stop();
+			$(".TIME").html("GAME OVER");}
+	},
+}
+
+document.onload=timer.start();
+</script>
+
+</body>
+</html>

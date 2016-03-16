@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Timer</title>
+</head>
+<body>
+
+  <div id="time-left"></div>
+
+  <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+  <script>
+      //Download an mp3 clip and link to it here:
+
+
+      setTimeout(fivePassed,5000);
+      setTimeout(tenPassed,10000);
+      setTimeout(timeUp,15000);
+
+      //Put your timeouts here
+
+      function fivePassed() {
+        $("#time-left").html("<h1>You have 10 seconds left!</h2>");
+        console.log("blah");
+      }
+
+      function tenPassed() {
+        $("#time-left").html("<h1>You have 5 seconds left!</h2>");
+                console.log("blah");
+      }
+
+      function timeUp(){
+        $("#time-left").html("<h1>TAH DAH!</h2>");
+      }
+  </script>
+</body>
+</html>

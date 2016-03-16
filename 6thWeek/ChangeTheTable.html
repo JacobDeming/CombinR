@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>Ahmed's Favorite Movies</title>
+
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+	  <h2>Jacob's Movies</h2>
+	  <p>These are simply the best movies...EVER!</p>            
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Movie Name</th>
+	        <th>Year</th>
+	        <th>Actors</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	        <td id="movie1">BLAH</td>
+	        <td id="year1">BLAH</td>
+	        <td id="actors1">BLAH</td>
+	      </tr>
+	      <tr>
+	        <td id="movie2">BLAH</td>
+	        <td id="year2">BLAH</td>
+	        <td id="actors2">BLAH</td>
+	      </tr>
+	      <tr>
+	        <td id="movie3">BLAH</td>
+	        <td id="year3">BLAH</td>
+	        <td id="actors3">BLAH</td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</div>
+
+<!-- Code is pulling stuff from the API -->
+<!-- Specific object regarding the movie the matrix. -->
+<!-- Grabs Jquery -->
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+
+<script type="text/javascript">
+	var type1 ='Force+Majeure';
+	var type2 ='The+Raid';
+
+	var queryURL1 = "http://www.omdbapi.com/?t=" + type1 + "&y=&plot=short&r=json";
+	var queryURL2 = "http://www.omdbapi.com/?t=" + type2 + "&y=&plot=short&r=json";
+	var queryURL3 = "http://www.omdbapi.com/?t=Hail+Caesar&y=2016&plot=short&r=json";
+
+	$.ajax({url: queryURL1, method: 'GET'})
+	 .done(function(response) {  
+	    console.log(response);
+ 	    $("#movie1").html(response.Title);
+ 		$("#year1").html(response.Year);
+ 		$("#actors1").html(response.Actors)});
+
+	 $.ajax({url: queryURL2, method: 'GET'})
+	 .done(function(response) {  
+	    console.log(response);
+ 	    $("#movie2").html(response.Title);
+ 	    $("#year2").html(response.Year);
+ 		$("#actors2").html(response.Actors)});
+
+	 $.ajax({url: queryURL3, method: 'GET'})
+	 .done(function(response) {  
+	    console.log(response);
+ 	    $("#movie3").html(response.Title);
+ 	    $("#year3").html(response.Year);
+ 		$("#actors3").html(response.Actors)});
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+</head>
+<body>
+	<div id="game"></div>
+
+	<script type="text/javascript">
+		//SINGLE PLAYER ROCK PAPER SCISSORS
+		function singlePlayerGame(){
+			var options=["r","p","s"];
+			var pointsP1=0;
+			var pointsP2=0;
+			var ties=0;
+				//Player and Computer make their choices
+				document.onkeyup= function(event){
+					var choice1= String.fromCharCode(event.keyCode).toLowerCase();
+					var choice2= options[Math.floor(Math.random()*options.length)];
+					if(choice1=="r" || choice1=="p" || choice1=="s"){
+					//The two choices are compared...
+					if(choice1.charAt(0)=="r" && choice2.charAt(0)=="p"){
+						pointsP2++;
+						alert("Player chose rock! Computer chose paper!");
+						alert("Computer Wins!");}
+					if(choice1.charAt(0)=="r" && choice2.charAt(0)=="s"){
+						pointsP1++;
+						alert("Player chose rock! Computer chose scissors!");
+						alert("Player Wins!");}
+					if(choice1.charAt(0)=="p" && choice2.charAt(0)=="r"){
+						pointsP1++;
+						alert("Player chose paper! Computer chose rock!");
+						alert("Player Wins!");}
+					if(choice1.charAt(0)=="p" && choice2.charAt(0)=="s"){
+						pointsP2++;
+						alert("Player chose paper! Computer chose scissors!");
+						alert("Computer Wins!");}
+					if(choice1.charAt(0)=="s" && choice2.charAt(0)=="r"){
+						pointsP2++;
+						alert("Player chose scissors! Computer chose rock!");
+						alert("Computer Wins!");}
+					if(choice1.charAt(0)=="s" && choice2.charAt(0)=="p"){
+						pointsP1++;
+						alert("Player chose scissors! Computer chose paper!");
+						alert("Player Wins!");}
+					else if(choice1.charAt(0)==choice2.charAt(0)){
+						alert("It was a tie! No points awarded!");
+						ties++;}
+					//Announce Points
+					var html ="<p>Press R, P, or S to start playing</p>"+"<p>Wins: "+pointsP1+"</p>"+"<p>Losses: "+pointsP2+"</p>"+"<p>Ties: "+ties+"</p>";
+					document.querySelector('#game').innerHTML=html;
+				}
+			}
+		}
+
+		function twoPlayerGame(){
+			var pointsP1=0;
+			var pointsP2=0;
+			var ties=0;
+			for(var turn=true; turn==true; turn=turn){
+				//Both players choose either rock, paper, or scissors without knowing the other's choice
+				var choice1=prompt("Player 1: Choose either '[R]ock', '[P]aper', or '[S]cissors'");
+				choice1=choice1.toLowerCase();
+				while(choice1.charAt(0) !="r" && choice1.charAt(0)!="p" && choice1.charAt(0)!="s"){
+					choice1=prompt("Player 1: Choose either '[R]ock', '[P]aper', or '[S]cissors");
+					choice1=choice1.toLowerCase();}
+
+				var choice2=prompt("Player 2: Choose either '[R]ock', '[P]aper', or '[S]cissors'");
+				choice2=choice2.toLowerCase();
+				while(choice2.charAt(0) !="r" && choice2.charAt(0)!="p" && choice2.charAt(0)!="s"){
+					choice2=prompt("Player 2: Choose either '[R]ock', '[P]aper', or '[S]cissors");
+					choice2=choice2.toLowerCase();}
+
+				//The two choices are compared...
+				if(choice1.charAt(0)=="r" && choice2.charAt(0)=="p"){
+					pointsP2++;
+					alert("Player 2 Wins!");}
+				if(choice1.charAt(0)=="r" && choice2.charAt(0)=="s"){
+					pointsP1++;
+					alert("Pklayer 1 Wins!");}
+				if(choice1.charAt(0)=="p" && choice2.charAt(0)=="r"){
+					pointsP1++;
+					alert("Pklayer 1 Wins!");}
+				if(choice1.charAt(0)=="p" && choice2.charAt(0)=="s"){
+					pointsP2++;
+					alert("Player 2 Wins!");}
+				if(choice1.charAt(0)=="s" && choice2.charAt(0)=="r"){
+					pointsP2++;
+					alert("Player 2 Wins!");}
+				if(choice1.charAt(0)=="s" && choice2.charAt(0)=="p"){
+					pointsP1++;
+					alert("Player 1 Wins!");}
+				else if(choice1.charAt(0)==choice2.charAt(0)){
+					alert("It was a tie! No points awarded!");
+					ties++;}
+
+					//Announce Points
+					var html ="<p>Player 1 Wins: "+pointsP1+"</p>"+"<p>Player 2 Wins: "+pointsP2+"</p>"+"<p>Ties: "+ties+"</p>";
+					document.querySelector('#game').innerHTML=html;
+					
+					//Ask if they would like to play again
+					var likeToPlay=prompt("Would you like to play again? [Yes or No]");
+					likeToPlay=likeToPlay.toLowerCase();
+						if(likeToPlay.charAt(0)=="y"){
+							turn=true;}
+						else{
+							turn=false;}
+			}
+		}
+
+		var gameType=prompt("Would you like to play a [single player] or [multi player] game?");
+		while(gameType!="single player" && gameType!="multi player"){	
+			var gameType=prompt("Would you like to play a [single player] or [multi player] game?");}	
+
+		if(gameType=="single player"){
+			singlePlayerGame();}
+		if(gameType=="multi player"){
+			twoPlayerGame();}
+
+	</script>
+
+</body>
+</html>

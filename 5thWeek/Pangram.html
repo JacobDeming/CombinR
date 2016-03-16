@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pangram</title>
+</head>
+<body>
+
+<script type="text/javascript">
+var letters="abcdefghijklmnopqrstuvwxyz"
+
+var allTheLetters=function(x){
+    for (var i=0;i<26;i++)
+        if(x.indexOf(letters.charAt(i))==-1){
+            return false;}
+    	else{
+    		return true;}}
+console.log(allTheLetters("pangram"));
+console.log(allTheLetters("hello"));
+console.log(allTheLetters("How quickly daft jumping zebras vex"));
+</script>
+
+</body>
+</html>

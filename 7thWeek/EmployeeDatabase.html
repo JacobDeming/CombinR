@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMPLOYEE DATA MANAGEMENT</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron indexJumbo" style="background-color: black">
+        <h1 class="text-center" style="color: white">Employee Data Managment</h1>
+        <h4 class="text-center" style="color: white"> A Comprehensive Directory of Employee Billable Hours</h4>
+        <br>
+    </div>
+
+
+    <div class="row" >
+        <div class="col-lg-12">
+            <br>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Current Employees</h3>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Role</th>
+                        <th>Start Date</th>
+                        <th>Months Worked</th>
+                        <th>Monthly Rate ($)</th>
+                        <th>Total Billed</th>
+                    </tr>
+                    </thead>
+
+
+                </table>
+            </div>
+        </div>
+        <style>
+            .row{
+                margin: 0;
+            };
+        </style>
+    </div>
+    <br>
+
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Current Employees</div>
+        <form>
+            <div class="form-group">
+                <label for="employeeName">Employee Name</label>
+                <input type="text" class="form-control" id="empName" placeholder="Name">
+            </div>
+
+            <div class="form-group">
+                <label for="employeeRole">Role</label>
+                <input type="text" class="form-control" id="empRole" placeholder="Role">
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Start Date (DD/MM/YY - ex: 01/01/91)</label>
+                <input type="text" class="form-control" id="empStart" placeholder="Start Date">
+            </div>
+
+            <div class="form-group">
+                <label for="employeeRate">Monthly Rate</label>
+                <input type="text" class="form-control" id="monthlyRate" placeholder="Monthly Rate">
+            </div>
+
+            <button type="submit" class="btn btn-default" id="subButton">Submit</button>
+        </form>
+    </div>
+
+
+    <style>
+        .form-group{
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top:10px;
+        }
+
+        #subButton{
+            margin: 10px;
+            margin-left: 30px;
+            background-color: #2f79b9;
+            color: white ;
+        }
+
+
+    </style>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+
+//Runs the code
+    $(function () {
+//Create the variable which will append the table
+        var currentEmployees = $(".table");
+//Create the Firebase reference
+        var fireBase = new Firebase("https://employeedata.firebaseio.com/");
+
+        $("#subButton").on("click", function (e) {
+            var userId = $("#empName").val().toUpperCase();
+            var userFB = new Firebase(fireBase + userId);
+
+            var role = $("#empRole").val(),
+                    start = $("#empStart").val(),
+                    rate = $("#monthlyRate").val();
+
+            userFB.set({
+                name: userId,
+                role: role,
+                start: start,
+                rate: rate
+            });
+
+        });
+
+
+        fireBase.on("child_added", function (snapshot) {
+
+            var snapValue = snapshot.val();
+            var newRow = $("<tr>");
+
+
+            var thenYear = new Date(snapValue.start).getFullYear();
+            var thenMonth = new Date(snapValue.start).getMonth();
+            var nowYear = new Date().getFullYear();
+            var nowMonth = new Date().getMonth();
+            var months = ((nowYear - thenYear) * 12) + (nowMonth - thenMonth);
+            var total = months * snapValue.rate;
+
+            [snapValue.name, snapValue.role, snapValue.start, months, snapValue.rate, total].forEach(function (snapItem) {
+                var newRowItem = $("<td>");
+                newRowItem.text(snapItem);
+                newRow.append(newRowItem);
+            });
+
+            currentEmployees.append(newRow);
+
+        });
+
+    })
+
+
+
+</script>
+
+</body>
+</html>

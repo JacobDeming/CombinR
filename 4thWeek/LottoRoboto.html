@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lotto Roboto</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+<h1>Welcome to Lotto Roboto</h1>
+<p>Your one-stop-shop for lottery numbers!</p>
+<button class="btn btn-primary genBtn">SHOW ME THE MONEY!</button>
+<button class="btn btn-danger clearBtn">TRY AGAIN</button>
+<div class="numberArea"></div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		function generateNumbers(){
+
+			$(".genBtn").click(function(){
+				createNumbers();
+			})
+
+			$(".clearBtn").click(function(){
+				noMoNumbers();
+			})
+
+		};
+
+		function createNumbers(){
+		var thoseNumbers="";
+			for(var i=0;i<7;i++){
+				thoseNumbers=thoseNumbers+Math.floor(Math.random()*10)
+				console.log(thoseNumbers);}
+			var printout=$('<p>'+thoseNumbers+'</p>');
+			$(".numberArea").append(printout);
+		};
+
+		function noMoNumbers(){
+			$(".numberArea").empty();
+		};
+		generateNumbers();
+	});
+	
+</script>
+
+</body>
+</html>

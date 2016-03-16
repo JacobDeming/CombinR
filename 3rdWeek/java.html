@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var owens = {
+    bro : true,
+    doYouLift : true,
+    gramsOfproteinIntake : 240,
+    catchPhraseOne : "I'm so broke right now because I just bought those new subwoofers.",
+    catchPhraseTwo : "You're taking my picture? Hang on. Let me put on my sunglasses.",
+    catchPhraseThree : "My fantasy football team is crushing it.",
+    catchPhraseFour : "You're hot. What's your name?",
+    
+    sayAllCatchPhrases : function(){
+        alert(this.catchPhraseOne);
+        alert(this.catchPhraseTwo);
+        alert(this.catchPhraseThree);
+        alert(this.catchPhraseFour);
+    },
+    upProteinIntake : function(){
+        this.gramsOfproteinIntake++;
+    },
+    injuredStopLifting : function(){
+        this.doYouLift = true;
+    }
+}
+
+owens.sayAllCatchPhrases();
+
+</script>
+
+</body>
+</html>

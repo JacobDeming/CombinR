@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color Corrector</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+<!-- The Paragraphs to Contain Each Word -->
+<ul>
+	<h1 class="target" id="1" style="color:black">Purple</h1>
+	<h1 id="2" style="color:green">Black</h1>
+	<h1 id="3" style="color:blue">Orange</h1>
+	<h1 id="4" style="color:cyan">Red</h1>
+	<h1 id="5" style="color:brown">Green</h1>
+	<h1 id="6" style="color:gray">Blue</h1>
+	<h1 id="7" style="color:purple">Cyan</h1>
+	<h1 id="8" style="color:orange">Gray</h1>
+</ul>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var colors=["purple", "black", "orange", "red", "green", "blue", "cyan", "Gray"];
+	var words=["Purple", "Black", "Orange", "Red", "Green", "Blue", "Cyan", "Gray"];
+
+// Shuffles the array of words that are present
+	var shuffle= function(thing){
+		thing.sort(function(){
+			return 0.5 - Math.random()
+		});
+	console.log(words)
+	}
+
+	var wordDump=function(){
+		var id="";
+		for(var i=1; i<=words.length;i++) {
+			id="#"+i;
+			$(id).empty(words[i]);
+			$(id).append(words[i]);
+		}
+	}
+
+	var colorDump=function(){
+		var id="";
+		for(var i=1; i<=colors.length;i++) {
+			id="#"+i;
+			$(id).css("color",colors[i]);
+		}
+	}
+
+	// var playGame=function(){
+	// 	for(var i=0;i<words.length;i++){
+	// 		if(i==0){
+	// 			var targetWord=$("<h1 class='target' id="+words[i]+"></h1").text(randomWords[i]);
+	// 			$(".target").append(targetWord);}
+	// 		else{}
+	// 	}
+	// }
+
+	shuffle(words);
+	shuffle(colors);
+	var randomWords=wordDump();
+	var randomColors=colorDump();
+	// playGame();
+});
+
+</script>
+
+
+</body>
+</html>
