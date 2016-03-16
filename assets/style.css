@@ -1,0 +1,12 @@
+.nav-tabs>.Off>a{
+	background-color:#824043;
+	color: #7f4082;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	border-bottom:0px;
+    border-top-right-radius:15px;
+	border-top-left-radius:15px;}
+
+.nav-tabs>.Off>a:hover{
+	background-color:#438240;
