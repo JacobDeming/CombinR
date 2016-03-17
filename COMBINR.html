@@ -38,7 +38,7 @@
 	$(function () {
 
 
-		var token;
+
 		var request_token_url = 'https://www.tumblr.com/oauth/request_token';
 		localStorage.access_token_url = 'https://www.tumblr.com/oauth/access_token';
 		var authorize_url = 'https://www.tumblr.com/oauth/authorize';
@@ -47,15 +47,14 @@
 
 		var oauth = OAuth({
 			consumer: {
-				public: localStorage.consumerKey,
-				secret: localStorage.consumerSecret
+				public: 'IZc5Vx2rMNc0MUZLisCnx09DkwLZ7KLrC10v4LEwgyZCseQgYa',
+				secret: 'iYNdQbH832RVyp7v8m3pW9IzwYgXzxbJpg8yO39LUZmPx0LvFa'
 			},
 			signature_method: 'HMAC-SHA1'
 		});
 		var request_data = {
 			url: request_token_url,
-			method: 'POST',
-			data: null
+			method: 'POST'
 		};
 		if (localStorage.loggedInTumblr == "true") {
 			console.log('aggregating');
@@ -80,9 +79,9 @@
 				data: oauth.authorize(request_data)
 			}).done(function (data) {
 				localStorage.authString = data;
-				data = data.split('=');
-				localStorage.tokenPub = data[1].split('&')[0];
-				localStorage.tokenSecret = data[2].split('&')[0];
+				data = data.split('&');
+				localStorage.tokenPub = data[0].split('=')[1];
+				localStorage.tokenSecret = data[1].split('=')[1];
 				console.log('redirecting');
 				window.location = authorize_url + "?" + localStorage.authString;
 			});
@@ -90,7 +89,7 @@
 
 		function aggregateTumblr () {
 			console.log()
-			token = {
+			var token = {
 				public: localStorage.USERKEY,
 				secret: localStorage.USERSECRET
 			};
