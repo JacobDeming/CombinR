@@ -94,7 +94,7 @@
 				secret: localStorage.USERSECRET
 			};
 			request_data = {
-				url: "https://api.tumblr.com/v2/user/dashboard?",
+				url: "https://api.tumblr.com/v2/user/dashboard",
 				method: 'GET',
 				data: {
 					oauth_verifier: localStorage.verifier
@@ -102,7 +102,7 @@
 			console.log(request_data, newStuff);
 			debugger
 			$.ajax({
-				url: "https://api.tumblr.com/v2/user/dashboard?",
+				url: "https://api.tumblr.com/v2/user/dashboard",
 				type: "GET",
 				data: oauth.authorize(request_data, newStuff)
 			}).done(function (data) {
