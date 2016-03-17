@@ -14,7 +14,7 @@
 <header><h1 class="text-center" id="PageTitle">CombinR</h1></header>
 <ul class='nav nav-tabs'>
 
-	<li id="TumblrTab" class="Off"><a href="#">Tumblr</a></li>
+	<li id="TumblrTab" class="Off"><a id="TumblrTabLink" href="#">Tumblr</a></li>
 	<li id="TwitterTab" class="Off"><a href="#">Twitter</a></li>
 	<li class="Off" id="CombinedSites"><a href="#">Open All</a></li>
 </ul>
@@ -67,7 +67,7 @@
 		} else {localStorage.loggedInTumblr = "false";}
 
 
-		$("#TumblrTab").on("click", function (e) {
+		$("#TumblrTabLink").on("click", function (e) {
 			e.preventDefault();
 			console.log('clicked');
 			if (localStorage.loggedInTumblr == "false") {
