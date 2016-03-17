@@ -135,9 +135,9 @@
 		};
 
 		var refreshID = setInterval(function() {
-			$.getJSON('tweets_json.php?count=5', function(data) {
+			$.getJSON("tweets_json.php?count=5", function(data) {
 
-				$('#tweetContainer').html(listTweets(data));
+				$('#MainContent').prepend(listTweets(data));
 			});
 		}, 2000);
 	});
