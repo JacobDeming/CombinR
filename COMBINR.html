@@ -11,7 +11,7 @@
 <div class="container">
 <header><h1 class="text-center" id="PageTitle">CombinR</h1></header>
 <ul class='nav nav-tabs'>
-	<li class="Off"><a href="#">Tumblr</a></li>
+	<li id="TumblrTab" class="Off"><a href="#">Tumblr</a></li>
 	<li class="Off"><a href="#">Twitter</a></li>
 	<li class="On" id="CombinedSites"><a href="#">Placeholder</a></li>
 </ul>
@@ -24,6 +24,90 @@
 <!-- Profile Sidebar -->
 <div class="container" id="ProfileSidebar">
 </div>
+
+
+
+
+<script src="jquery-2.2.1.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+<script src="oauth-1.0a.js"></script>
+<script>
+
+	$(function () {
+
+		localStorage.loggedInTumblr = localStorage.loggedInTumblr ? localStorage.loggedInTumblr : false;
+		if (localStorage.loggedInTumblr) {
+
+			var token = {
+				public: localStorage.USERKEY,
+				secret: localStorage.USERSECRET
+			}
+			console.log('aggregating');
+			aggregateTumblr(token);
+		}
+		var request_token_url = 'https://www.tumblr.com/oauth/request_token';
+		localStorage.access_token_url = 'https://www.tumblr.com/oauth/access_token';
+		var authorize_url = 'https://www.tumblr.com/oauth/authorize';
+		localStorage.consumerKey = 'IZc5Vx2rMNc0MUZLisCnx09DkwLZ7KLrC10v4LEwgyZCseQgYa';
+		localStorage.consumerSecret = 'iYNdQbH832RVyp7v8m3pW9IzwYgXzxbJpg8yO39LUZmPx0LvFa';
+
+		var oauth = OAuth({
+			consumer: {
+				public: localStorage.consumerKey,
+				secret: localStorage.consumerSecret
+			},
+			signature_method: 'HMAC-SHA1'
+		});
+
+		var request_data = {
+			url: request_token_url,
+			method: 'POST',
+			data: null
+		};
+
+		$("#TumblrTab").on("click", function (e) {
+			console.log('clicked');
+			if (!(localStorage.loggedInTumblr)) {
+				tumblrOAuth();
+			}
+		});
+
+		function tumblrOAuth () {
+			$.ajax({
+				url: request_data.url,
+				type: request_data.method,
+				data: oauth.authorize(request_data)
+			}).done(function (data) {
+				localStorage.authString = data;
+				data = data.split('=');
+				localStorage.tokenPub = data[1].split('&')[0];
+				localStorage.tokenSecret = data[2].split('&')[0];
+				console.log('redirecting');
+				window.location = authorize_url + "?" + localStorage.authString;
+			});
+		}
+
+		function aggregateTumblr (token) {
+			$.ajax({
+				url: "https://api.tumblr.com/v2/user/dashboard",
+				type: "GET",
+				data: oauth.authorize(request_data, token)
+			}).done(function (data) {
+
+				console.log(data);
+			});
+		}
+
+	})
+
+
+</script>
+
+
+
+
 
 </body>
 </html>
