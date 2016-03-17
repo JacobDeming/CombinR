@@ -39,6 +39,8 @@
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
 <script src="oauth-1.0a.js"></script>
+<script src="tweets_json.php?count=5" type="text/javascript"></script>
+
 <script>
 
 	$(function () {
@@ -112,15 +114,7 @@
 			});
 		}
 
-	})
-
-
-</script>
-<script src="tweets_json.php?count=5" type="text/javascript"></script>
-<script type="text/javascript">
-
-
-		    var count = 0;
+		var count = 0;
 		function listTweets(x) {
 
 			var time = x[0].created_at;
@@ -141,7 +135,11 @@
 			});
 		}, 6000);
 
+	})
+
+
 </script>
+
 
 
 
