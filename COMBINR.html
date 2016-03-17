@@ -34,7 +34,7 @@
 </div>
 
 <script src="jquery-2.2.1.js"></script>
-<script src="tweets_json.php?count=5" type="text/javascript"></script>
+
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
@@ -116,10 +116,9 @@
 
 
 </script>
-
+<script src="tweets_json.php?count=5" type="text/javascript"></script>
 <script type="text/javascript">
 
-	$(document).ready(function() {
 
 		    var count = 0;
 		function listTweets(x) {
@@ -141,7 +140,6 @@
 				$('#MainContent').prepend(listTweets(data));
 			});
 		}, 6000);
-	});
 
 </script>
 
