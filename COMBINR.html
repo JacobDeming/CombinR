@@ -34,6 +34,7 @@
 </div>
 
 <script src="jquery-2.2.1.js"></script>
+<script src="tweets_json.php?count=5" type="text/javascript"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
@@ -113,6 +114,33 @@
 
 	})
 
+
+</script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		function listTweets(x) {
+
+			var time = x[0].created_at;
+			var text = x[0].text;
+			var sn = x[0].user.screen_name;
+
+			console.log('Hi');
+			console.log("TWEET TEXT: " + text);
+			console.log("POST TIME: " + time);
+			console.log("SCREEN NAME: " + sn);
+			return '<p>' + sn + ': ' + text + ' ' + time + '</p>';
+		};
+
+		var refreshID = setInterval(function() {
+			$.getJSON('tweets_json.php?count=5', function(data) {
+
+				$('#tweetContainer').html(listTweets(data));
+			});
+		}, 2000);
+	});
 
 </script>
 
