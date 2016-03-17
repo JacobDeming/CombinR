@@ -70,7 +70,7 @@
 		$("#TumblrTab").on("click", function (e) {
 			e.preventDefault();
 			console.log('clicked');
-			if (!(localStorage.loggedInTumblr)) {
+			if (localStorage.loggedInTumblr == "false") {
 				tumblrOAuth();
 			}
 		});
