@@ -38,15 +38,7 @@
 	$(function () {
 
 		localStorage.loggedInTumblr = localStorage.loggedInTumblr ? localStorage.loggedInTumblr : false;
-		if (localStorage.loggedInTumblr) {
 
-			var token = {
-				public: localStorage.USERKEY,
-				secret: localStorage.USERSECRET
-			}
-			console.log('aggregating');
-			aggregateTumblr(token);
-		}
 		var request_token_url = 'https://www.tumblr.com/oauth/request_token';
 		localStorage.access_token_url = 'https://www.tumblr.com/oauth/access_token';
 		var authorize_url = 'https://www.tumblr.com/oauth/authorize';
@@ -67,6 +59,16 @@
 			data: null
 		};
 
+		if (localStorage.loggedInTumblr) {
+
+			var token = {
+				public: localStorage.USERKEY,
+				secret: localStorage.USERSECRET
+			}
+			console.log('aggregating');
+			aggregateTumblr(token);
+		}
+
 		$("#TumblrTab").on("click", function (e) {
 			e.preventDefault();
 			console.log('clicked');
@@ -74,6 +76,8 @@
 				tumblrOAuth();
 			}
 		});
+
+
 
 		function tumblrOAuth () {
 			$.ajax({
