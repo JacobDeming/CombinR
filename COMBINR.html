@@ -38,7 +38,7 @@
 	$(function () {
 
 
-
+		var token;
 		var request_token_url = 'https://www.tumblr.com/oauth/request_token';
 		localStorage.access_token_url = 'https://www.tumblr.com/oauth/access_token';
 		var authorize_url = 'https://www.tumblr.com/oauth/authorize';
@@ -58,12 +58,8 @@
 			data: null
 		};
 		if (localStorage.loggedInTumblr == "true") {
-			var token = {
-				public: localStorage.USERKEY,
-				secret: localStorage.USERSECRET
-			};
 			console.log('aggregating');
-			aggregateTumblr(token);
+			aggregateTumblr();
 		} else {localStorage.loggedInTumblr = "false";}
 
 
@@ -92,10 +88,14 @@
 			});
 		}
 
-		function aggregateTumblr (token) {
+		function aggregateTumblr () {
 			console.log()
+			token = {
+				public: localStorage.USERKEY,
+				secret: localStorage.USERSECRET
+			};
 			request_data = {
-				url: "https://api.tumblr.com/v2/user/dashboard",
+				url: "api.tumblr.com/v2/user/dashboard",
 				type: 'GET',
 				data: {
 					oauth_verifier: localStorage.verifier
@@ -103,7 +103,7 @@
 			console.log(request_data, token);
 			debugger
 			$.ajax({
-				url: "https://api.tumblr.com/v2/user/dashboard",
+				url: "api.tumblr.com/v2/user/dashboard",
 				type: "GET",
 				data: oauth.authorize(request_data, token)
 			}).done(function (data) {
