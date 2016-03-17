@@ -57,14 +57,14 @@
 			method: 'POST',
 			data: null
 		};
-		if (localStorage.loggedInTumblr == true) {
+		if (localStorage.loggedInTumblr == "true") {
 			var token = {
 				public: localStorage.USERKEY,
 				secret: localStorage.USERSECRET
 			};
 			console.log('aggregating');
 			aggregateTumblr(token);
-		} else {localStorage.loggedInTumblr = false;}
+		} else {localStorage.loggedInTumblr = "false";}
 
 
 		$("#TumblrTab").on("click", function (e) {
