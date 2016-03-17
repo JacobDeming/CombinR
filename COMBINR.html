@@ -35,6 +35,18 @@
 <script type="text/javascript">
 count=0;
 
+	function listTweets(x) {
+				
+				var time = x[0].created_at;
+				var text = x[0].text;
+				var sn = x[0].user.screen_name;
+
+				console.log("TWEET TEXT: " + text);
+				console.log("POST TIME: " + time);
+				console.log("SCREEN NAME: " + sn);
+				return '<p>' + sn + ': ' + text + ' ' + time + '</p>';
+	};
+
 $(".Off").on("click",function(){
 	$(this).toggleClass("On");
 	$(this).toggleClass("Off");})
@@ -42,7 +54,7 @@ $(".Off").on("click",function(){
 var call=function(){
 	count++;
 	console.log("Hello");
-	$("#MainContent").prepend("<div class='Post'><p>"+count+"<p></div>");}
+	$("#MainContent").prepend(listTweets(data));}
 
 setInterval(call,2000);
 
