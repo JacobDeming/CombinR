@@ -89,7 +89,7 @@
 
 		function aggregateTumblr () {
 			console.log()
-			var token = {
+			var newStuff = {
 				public: localStorage.USERKEY,
 				secret: localStorage.USERSECRET
 			};
@@ -99,14 +99,14 @@
 				data: {
 					oauth_verifier: localStorage.verifier
 				}};
-			console.log(request_data, token);
+			console.log(request_data, newStuff);
 			debugger
 			$.ajax({
 				url: "https://api.tumblr.com/v2/user/dashboard?",
 				type: "GET",
-				data: oauth.authorize(request_data, token)
+				data: oauth.authorize(request_data, newStuff)
 			}).done(function (data) {
-
+debugger
 				console.log(data);
 			});
 		}

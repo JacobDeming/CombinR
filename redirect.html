@@ -26,11 +26,6 @@
         debugger
         localStorage.verifier = verifier;
 
-        var token = {
-            public: localStorage.tokenPub,
-            secret: localStorage.tokenSecret
-        };
-
         var request_data = {
             url: localStorage.access_token_url,
             method: 'POST',
@@ -38,6 +33,13 @@
                 "oauth_verifier": verifier
             }
         };
+
+        var token = {
+            public: localStorage.tokenPub,
+            secret: localStorage.tokenSecret
+        };
+
+
 
         $.ajax({
             url: localStorage.access_token_url,
