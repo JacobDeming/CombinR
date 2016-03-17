@@ -14,9 +14,6 @@
 
     $(function () {
 
-        var verifier = window.location.href.split('verifier=')[1].split('#')[0];
-        localStorage.verifier = verifier;
-
         var oauth = OAuth({
             consumer: {
                 public: 'IZc5Vx2rMNc0MUZLisCnx09DkwLZ7KLrC10v4LEwgyZCseQgYa',
@@ -25,22 +22,26 @@
             signature_method: 'HMAC-SHA1'
         });
 
+        var verifier = window.location.href.split('=')[1].split('#')[0];
+        debugger
+        localStorage.verifier = verifier;
+
         var token = {
             public: localStorage.tokenPub,
             secret: localStorage.tokenSecret
-        }
+        };
 
         var request_data = {
             url: localStorage.access_token_url,
             method: 'POST',
             data: {
-                oauth_verifier: verifier
+                "oauth_verifier": verifier
             }
-        }
+        };
 
         $.ajax({
             url: localStorage.access_token_url,
-            type: "POST",
+            method: "POST",
             data: oauth.authorize(request_data, token)
         }).done(function (data) {
             console.log(data);
