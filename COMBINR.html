@@ -4,26 +4,48 @@
 	<title>CombinR - One Page Social Media</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
 
 <!-- Header For the Page -->
 <div class="container">
+<div class="jumbotron">
 <header><h1 class="text-center" id="PageTitle">CombinR</h1></header>
 <ul class='nav nav-tabs'>
-	<li class="Off"><a href="#">Tumblr</a></li>
-	<li class="Off"><a href="#">Twitter</a></li>
-	<li class="On" id="CombinedSites"><a href="#">Placeholder</a></li>
+	<li id="TumblrTab" class="Off"><a href="#">Tumblr</a></li>
+	<li id="TwitterTab" class="Off"><a href="#">Twitter</a></li>
+	<li class="Off" id="CombinedSites"><a href="#">Open All</a></li>
 </ul>
+</div>
 </div>
 
 <!-- Main Content Area -->
-<div class="container" id="MainContent">
+
+<div class="container fill">
+<div id="MainContent">
+</div>
 </div>
 
 <!-- Profile Sidebar -->
 <div class="container" id="ProfileSidebar">
+
 </div>
 
+<script type="text/javascript">
+count=0;
+
+$(".Off").on("click",function(){
+	$(this).toggleClass("On");
+	$(this).toggleClass("Off");})
+
+var call=function(){
+	count++;
+	console.log("Hello");
+	$("#MainContent").prepend("<div class='Post'><p>"+count+"<p></div>");}
+
+setInterval(call,2000);
+
+</script>
 </body>
 </html>
