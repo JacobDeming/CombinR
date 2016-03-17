@@ -15,6 +15,7 @@
     $(function () {
 
         var verifier = window.location.href.split('verifier=')[1].split('#')[0];
+        localStorage.verifier = verifier;
 
         var oauth = OAuth({
             consumer: {

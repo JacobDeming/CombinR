@@ -93,6 +93,13 @@
 		}
 
 		function aggregateTumblr (token) {
+			request_data = {
+				url: "https://api.tumblr.com/v2/user/dashboard",
+				type: 'GET',
+				data: null //data: {
+					//oauth_verifier: verifier
+				}
+			
 			$.ajax({
 				url: "https://api.tumblr.com/v2/user/dashboard",
 				type: "GET",
