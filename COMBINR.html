@@ -121,6 +121,7 @@
 
 	$(document).ready(function() {
 
+		    var count = 0;
 		function listTweets(x) {
 
 			var time = x[0].created_at;
@@ -136,10 +137,10 @@
 
 		var refreshID = setInterval(function() {
 			$.getJSON("tweets_json.php?count=5", function(data) {
-
+				count++;
 				$('#MainContent').prepend(listTweets(data));
 			});
-		}, 2000);
+		}, 6000);
 	});
 
 </script>
