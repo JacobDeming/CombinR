@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CombinR - One Page Social Media</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- Header For the Page -->
+<div class="container">
+<div class="jumbotron">
+<header><h1 class="text-center" id="PageTitle">CombinR</h1></header>
+<ul class='nav nav-tabs'>
+
+	<li id="TumblrTab" class="Off"><a id="TumblrTabLink" href="">Tumblr</a></li>
+	<li id="TwitterTab" class="Off"><a href="#">Twitter</a></li>
+	<li class="Off" id="CombinedSites"><a href="#">Open All</a></li>
+</ul>
+</div>
+</div>
+
+<!-- Main Content Area -->
+
+<div class="container fill">
+<div id="MainContent">
+</div>
+</div>
+
+<!-- Profile Sidebar -->
+<div class="container" id="ProfileSidebar">
+
+</div>
+
+<script src="jquery-2.2.1.js"></script>
+
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+<script src="oauth-1.0a.js"></script>
+<script src="tweets_json.php?count=5" type="text/javascript"></script>
+
+<script>
+
+	$(function () {
+
+
+
+		var request_token_url = 'https://www.tumblr.com/oauth/request_token';
+		localStorage.access_token_url = 'https://www.tumblr.com/oauth/access_token';
+		var authorize_url = 'https://www.tumblr.com/oauth/authorize';
+		localStorage.consumerKey = 'IZc5Vx2rMNc0MUZLisCnx09DkwLZ7KLrC10v4LEwgyZCseQgYa';
+		localStorage.consumerSecret = 'iYNdQbH832RVyp7v8m3pW9IzwYgXzxbJpg8yO39LUZmPx0LvFa';
+
+		var oauth = OAuth({
+			consumer: {
+				public: 'IZc5Vx2rMNc0MUZLisCnx09DkwLZ7KLrC10v4LEwgyZCseQgYa',
+				secret: 'iYNdQbH832RVyp7v8m3pW9IzwYgXzxbJpg8yO39LUZmPx0LvFa'
+			},
+			signature_method: 'HMAC-SHA1'
+		});
+		var request_data = {
+			url: request_token_url,
+			method: 'POST'
+		};
+		if (localStorage.loggedInTumblr == "true") {
+			console.log('aggregating');
+			aggregateTumblr();
+		} else {localStorage.loggedInTumblr = "false";}
+
+
+		$("#TumblrTabLink").on("click", function (e) {
+			e.preventDefault();
+			console.log('clicked');
+			if (localStorage.loggedInTumblr == "false") {
+				tumblrOAuth();
+			}
+		});
+
+
+
+		function tumblrOAuth () {
+			$.ajax({
+				url: request_data.url,
+				type: request_data.method,
+				data: oauth.authorize(request_data)
+			}).done(function (data) {
+				localStorage.authString = data;
+				data = data.split('&');
+				localStorage.tokenPub = data[0].split('=')[1];
+				localStorage.tokenSecret = data[1].split('=')[1];
+				console.log('redirecting');
+				window.location = authorize_url + "?" + localStorage.authString;
+			});
+		}
+
+		function aggregateTumblr () {
+			console.log()
+			var newStuff = {
+				public: localStorage.USERKEY,
+				secret: localStorage.USERSECRET
+			};
+			request_data = {
+				url: "https://api.tumblr.com/v2/user/dashboard",
+				method: 'GET'
+			};
+			$.ajax({
+				url: "https://api.tumblr.com/v2/user/dashboard",
+				method: "GET",
+				data: oauth.authorize(request_data, newStuff)
+			}).done(function (data) {
+				console.log(data);
+			});
+		}
+
+
+
+	})
+
+
+</script>
+
+<script>
+
+	var count = 0;
+	function listTweets(x) {
+
+		var time = x[0].created_at;
+		var text = x[0].text;
+		var sn = x[0].user.screen_name;
+
+		console.log('Hi');
+		console.log("TWEET TEXT: " + text);
+		console.log("POST TIME: " + time);
+		console.log("SCREEN NAME: " + sn);
+		return '<p>' + sn + ': ' + text + ' ' + time + '</p>';
+	};
+
+	var refreshID = setInterval(function() {
+		$.getJSON("tweets_json.php?count=5", function(data) {
+			count++;
+			$('#MainContent').prepend(listTweets(data));
+		});
+	}, 10000);
+
+</script>
+
+
+
+
+</body>
+</html>
