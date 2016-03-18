@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="jquery-2.2.1.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+<script src="oauth-1.0a.js"></script>
+<script>
+
+    $(function () {
+
+        var oauth = OAuth({
+            consumer: {
+                public: 'IZc5Vx2rMNc0MUZLisCnx09DkwLZ7KLrC10v4LEwgyZCseQgYa',
+                secret: 'iYNdQbH832RVyp7v8m3pW9IzwYgXzxbJpg8yO39LUZmPx0LvFa'
+            },
+            signature_method: 'HMAC-SHA1'
+        });
+
+        var verifier = window.location.href.split('=')[2].split('#')[0];
+        localStorage.verifier = verifier;
+
+        var request_data = {
+            url: localStorage.access_token_url,
+            method: 'POST',
+            data: {
+                "oauth_verifier": verifier
+            }
+        };
+
+        var token = {
+            public: localStorage.tokenPub,
+            secret: localStorage.tokenSecret
+        };
+
+
+
+        $.ajax({
+            url: localStorage.access_token_url,
+            method: "POST",
+            data: oauth.authorize(request_data, token)
+        }).done(function (data) {
+            console.log(data);
+            data = data.split('&');
+            localStorage.USERKEY = data[0].split('=')[1];
+            localStorage.USERSECRET = data[1].split('=')[1];
+            localStorage.loggedInTumblr = "true";
+            window.location = "https://stark-dawn-77174.herokuapp.com";
+        });
+
+    })
+
+
+</script>
+
+</body>
+</html>
