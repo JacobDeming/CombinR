@@ -62,8 +62,21 @@ html,body{
 	background-color: grey;
 	overflow: auto;}
 
-.Post{
+.Tweet{
+	border-radius: 15px;
 	margin: 20px;
 	padding: 20px;
-	background-color: white;
+	background-color: #4e5d6c;}
+
+.Tweet:focus{
+	border-color: blue;}
+
+.TweetName{
+	font-size: 20px;}
+
+.TweetTime{
+	font-size: 12px;}
+
+.TweetText{
+	margin-top: 10px;
 }

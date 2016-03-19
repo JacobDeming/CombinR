@@ -2,9 +2,10 @@
 <html>
 <head>
 	<title>CombinR - One Page Social Media</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="assets/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -25,7 +26,33 @@
 
 <div class="container fill">
 <div id="MainContent">
+	<div tabindex="0" class="Tweet Post">
+	<div class='TweetName'>@JacobDeming</div>
+	<div class='TweetTime'>Time of Post: 12:00</div>
+	<div class='TweetText'>Donec bibendum arcu at interdum condimentum. Curabitur congue purus tellus, ut tincidunt lacus porttitor vel. Mauris eget elit ut metus mollis pharetra at et nulla. Aenean varius faucibus rutrum. Pellentesque blandit eu elit id finibus. Proin dictum, libero sed sollicitudin fermentum, dolor est hendrerit leo, in facilisis risus dolor viverra eros. Praesent mi tortor, accumsan lobortis aliquet ultricies, varius eu elit. Cras maximus malesuada fermentum. Suspendisse finibus justo molestie pulvinar convallis.</div>
+	</div>
 </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- Profile Sidebar -->
@@ -39,7 +66,7 @@
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
 <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
 <script src="oauth-1.0a.js"></script>
-<script src="tweets_json.php?count=5" type="text/javascript"></script>
+<script src="tweets_json.php" type="text/javascript"></script>
 
 <script>
 
@@ -125,24 +152,38 @@
 
 	var count = 0;
 	function listTweets(x) {
-
-		var time = x[0].created_at;
-		var text = x[0].text;
-		var sn = x[0].user.screen_name;
-
-		console.log('Hi');
-		console.log("TWEET TEXT: " + text);
-		console.log("POST TIME: " + time);
-		console.log("SCREEN NAME: " + sn);
-		return '<p>' + sn + ': ' + text + ' ' + time + '</p>';
+		var time="<div class='TweetTime'>POST TIME: "+x[0].created_at+"</div>";
+		var text="<div class='TweetText'>TWEET TEXT: "+x[0].text+"</div>";
+		var sn="<div class='TweetName'>SCREEN NAME: "+x[0].user.screen_name+"</div>";
+		return "<div data-toggle='modal' data-target='#myModal' class='Tweet'>"+sn+text+time+"</div>";
 	};
 
 	var refreshID = setInterval(function() {
-		$.getJSON("tweets_json.php?count=5", function(data) {
-			count++;
-			$('#MainContent').prepend(listTweets(data));
+		$.getJSON("tweets_json.php?count=5", function(x) {
+			$('#MainContent').prepend(listTweets(x));
+			$(".Tweet").on("click",function(){
+				var thisText=$(this).child(".TweetText").text();
+				var thisName=$(this).child(".TweetText").text();
+				var thisTime=$(this).child(".TweetTime").text();
+				$("#myModal").html("<h4>"+thisName+"</h4><p>"+thisTime+"</p>"+thisText);})
+
 		});
 	}, 10000);
+
+var count=0;
+var focus="";
+var thing;
+
+var foucs=function(x){
+		x.scrollIntoView();}
+
+var postShit=function(){
+	$("#MainContent").prepend('<div data-toggle="modal" data-target="#myModal" tabindex="'+count+'" class="Tweet"><div class="TweetName">@JacobDeming'+count+'</div><div class="TweetTime">Time of Post: 12:00</div><div class="TweetText">Donec bibendum arcu at interdum condimentum. Curabitur congue purus tellus, ut tincidunt lacus porttitor vel. Mauris eget elit ut metus mollis pharetra at et nulla. Aenean varius faucibus rutrum. Pellentesque blandit eu elit id finibus. Proin dictum, libero sed sollicitudin fermentum, dolor est hendrerit leo, in facilisis risus dolor viverra eros. Praesent mi tortor, accumsan lobortis aliquet ultricies, varius eu elit. Cras maximus malesuada fermentum. Suspendisse finibus justo molestie pulvinar convallis.</div></div>');
+	count++;
+	$(".Tweet").on("click",function(){
+		$(".modal-content").html("<h4>@JacobDeming</h4><p>Time of Post: 12:00</p>Donec bibendum arcu at interdum condimentum. Curabitur congue purus tellus, ut tincidunt lacus porttitor vel. Mauris eget elit ut metus mollis pharetra at et nulla. Aenean varius faucibus rutrum. Pellentesque blandit eu elit id finibus. Proin dictum, libero sed sollicitudin fermentum, dolor est hendrerit leo, in facilisis risus dolor viverra eros. Praesent mi tortor, accumsan lobortis aliquet ultricies, varius eu elit. Cras maximus malesuada fermentum. Suspendisse finibus justo molestie pulvinar convallis.");})}
+
+var thing=setInterval(postShit,5000);
 
 </script>
 
